@@ -13,14 +13,13 @@ namespace mor.Interfaces
         private byte frame;     // 1/75 s
     };
 
-    public struct LbaAddress
-    {
-        private int lba;
-    };
-
     public class DiscAddress
     {
-        MsfAddress MsfAddress { get; }
-        LbaAddress LbaAddress { get; }
+        public DiscAddress(int lba)
+        {
+            Lba = lba;
+        }
+        public MsfAddress Msf { get; }
+        public int Lba { get; }
     }
 }

@@ -91,7 +91,7 @@ namespace mor.Hardware
 
             public int TrackNumber => LinuxTocEntry.cdte_track;
 
-            public DiscAddress Address => throw new NotImplementedException();
+            public DiscAddress Address => new DiscAddress(LinuxTocEntry.cdte_addr.lba);
 
             public int Mode => LinuxTocEntry.cdte_datamode;
 
