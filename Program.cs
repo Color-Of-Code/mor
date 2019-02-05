@@ -11,8 +11,11 @@ namespace mor
             var device = "/dev/cdrom";
             var toc = CdRom.ReadToc(device);
 
-            var discid = new FreeDbDiscID();
-            Console.WriteLine("FreeDB DISC ID:\r\n {0}", discid.GetFingerprint(toc));
+            var freeDbDiscID = new FreeDbDiscID();
+            Console.WriteLine("FreeDB DISC ID:\r\n {0}", freeDbDiscID.GetFingerprint(toc));
+
+            var musicBrainzDiscID = new MusicBrainzDiscID();
+            Console.WriteLine("MusicBrainz DISC ID:\r\n {0}", musicBrainzDiscID.GetFingerprint(toc));
         }
     }
 }
