@@ -13,7 +13,7 @@ namespace mor
 
             Console.WriteLine("{0} tracks", toc.EndTrack);
             foreach (var e in toc.TrackEntries)
-                Console.WriteLine("{0} - LBA {1}", e.TrackNumber, e.Address.Lba);
+                Console.WriteLine("{0} - Start Time {1}", e.TrackNumber, e.StartTime);
         }
     }
 }

@@ -91,7 +91,7 @@ namespace mor.Hardware
 
             public int TrackNumber => LinuxTocEntry.cdte_track;
 
-            public DiscAddress Address => new DiscAddress(LinuxTocEntry.cdte_addr.lba);
+            public int Lba => LinuxTocEntry.cdte_addr.lba;
 
             public int Mode => LinuxTocEntry.cdte_datamode;
 
@@ -100,6 +100,11 @@ namespace mor.Hardware
             public int Adr => throw new NotImplementedException();
 
             public int Control => throw new NotImplementedException();
+
+            // 2s offset = 150 frames
+            public int StartFrame => (Lba + 150);
+            // 75 frames / s
+            public int StartTime => StartFrame / 75;
         };
         #endregion
 
