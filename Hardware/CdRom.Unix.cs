@@ -98,14 +98,18 @@ namespace mor.Hardware
 
             public int Format => throw new NotImplementedException();
 
-            public int Adr => throw new NotImplementedException();
+            public int Control => LinuxTocEntry.cdte_adr_ctrl / 16;
 
-            public int Control => throw new NotImplementedException();
+            public int Adr => LinuxTocEntry.cdte_adr_ctrl & 0xF;
 
             // 2s offset = 150 frames
             public int StartFrame => (Lba + 150);
             // 75 frames / s
             public int StartTime => StartFrame / 75;
+
+            public int M => StartTime / 60;
+            public int S => StartTime % 60;
+            public int F => StartFrame % 75;
         };
         #endregion
 

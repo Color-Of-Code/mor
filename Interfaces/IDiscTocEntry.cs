@@ -16,5 +16,8 @@ namespace mor.Interfaces
         int Format { get; }
         int Adr { get; }
         int Control { get; }
+        int M { get; }
+        int S { get; }
+        int F { get; }
    }
 }
