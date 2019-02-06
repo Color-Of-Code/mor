@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using mor.Interfaces;
@@ -126,7 +127,12 @@ namespace mor.Hardware
             int mode = 0x400; // O_RDONLY | O_NONBLOCK
             int handle = NativeOpen(filename, mode);
             if (handle < 0)
-                throw new Exception("open() failed");
+            {
+                int error = Marshal.GetLastWin32Error();
+                if (error == 123) // ENOMEDIUM No medium found
+                    throw new FileNotFoundException("No medium found");
+                throw new IOException("open() failed");
+            }
             return handle;
         }
 
