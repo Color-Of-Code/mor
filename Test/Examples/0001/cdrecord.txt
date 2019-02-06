@@ -1,0 +1,47 @@
+> cdrecord -toc
+Device was not specified. Trying to find an appropriate drive...
+Detected CD-R drive: /dev/cdrw
+Using /dev/cdrom of unknown capabilities
+Device type    : Removable CD-ROM
+Version        : 5
+Response Format: 2
+Capabilities   :
+Vendor_info    : 'HL-DT-ST'
+Identification : 'DVDRAM GSA-4040B'
+Revision       : 'A300'
+Device seems to be: Generic mmc2 DVD-R/DVD-RW.
+Using generic SCSI-3/mmc   CD-R/CD-RW driver (mmc_cdr).
+Driver flags   : MMC-3 SWABAUDIO BURNFREE
+Supported modes: TAO PACKET SAO SAO/R96P SAO/R96R RAW/R16 RAW/R96P RAW/R96R
+first: 1 last 30
+track:   1 lba:         0 (        0) 00:02:00 adr: 1 control: 0 mode: 0
+track:   2 lba:     12940 (    51760) 02:54:40 adr: 1 control: 0 mode: 0
+track:   3 lba:     20521 (    82084) 04:35:46 adr: 1 control: 0 mode: 0
+track:   4 lba:     27395 (   109580) 06:07:20 adr: 1 control: 0 mode: 0
+track:   5 lba:     38421 (   153684) 08:34:21 adr: 1 control: 0 mode: 0
+track:   6 lba:     51323 (   205292) 11:26:23 adr: 1 control: 0 mode: 0
+track:   7 lba:     60407 (   241628) 13:27:32 adr: 1 control: 0 mode: 0
+track:   8 lba:     68296 (   273184) 15:12:46 adr: 1 control: 0 mode: 0
+track:   9 lba:     81831 (   327324) 18:13:06 adr: 1 control: 0 mode: 0
+track:  10 lba:     94182 (   376728) 20:57:57 adr: 1 control: 0 mode: 0
+track:  11 lba:    107325 (   429300) 23:53:00 adr: 1 control: 0 mode: 0
+track:  12 lba:    116890 (   467560) 26:00:40 adr: 1 control: 0 mode: 0
+track:  13 lba:    129303 (   517212) 28:46:03 adr: 1 control: 0 mode: 0
+track:  14 lba:    139154 (   556616) 30:57:29 adr: 1 control: 0 mode: 0
+track:  15 lba:    150131 (   600524) 33:23:56 adr: 1 control: 0 mode: 0
+track:  16 lba:    157438 (   629752) 35:01:13 adr: 1 control: 0 mode: 0
+track:  17 lba:    175713 (   702852) 39:04:63 adr: 1 control: 0 mode: 0
+track:  18 lba:    185865 (   743460) 41:20:15 adr: 1 control: 0 mode: 0
+track:  19 lba:    194206 (   776824) 43:11:31 adr: 1 control: 0 mode: 0
+track:  20 lba:    203418 (   813672) 45:14:18 adr: 1 control: 0 mode: 0
+track:  21 lba:    216698 (   866792) 48:11:23 adr: 1 control: 0 mode: 0
+track:  22 lba:    227460 (   909840) 50:34:60 adr: 1 control: 0 mode: 0
+track:  23 lba:    235756 (   943024) 52:25:31 adr: 1 control: 0 mode: 0
+track:  24 lba:    242174 (   968696) 53:50:74 adr: 1 control: 0 mode: 0
+track:  25 lba:    249601 (   998404) 55:30:01 adr: 1 control: 0 mode: 0
+track:  26 lba:    256276 (  1025104) 56:59:01 adr: 1 control: 0 mode: 0
+track:  27 lba:    263178 (  1052712) 58:31:03 adr: 1 control: 0 mode: 0
+track:  28 lba:    274282 (  1097128) 60:59:07 adr: 1 control: 0 mode: 0
+track:  29 lba:    282273 (  1129092) 62:45:48 adr: 1 control: 0 mode: 0
+track:  30 lba:    289869 (  1159476) 64:26:69 adr: 1 control: 0 mode: 0
+track:lout lba:    301568 (  1206272) 67:02:68 adr: 1 control: 0 mode: -1

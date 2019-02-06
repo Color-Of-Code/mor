@@ -1,0 +1,28 @@
+> cdrecord -toc
+Device was not specified. Trying to find an appropriate drive...
+Detected CD-R drive: /dev/cdrw
+Using /dev/cdrom of unknown capabilities
+Device type    : Removable CD-ROM
+Version        : 5
+Response Format: 2
+Capabilities   :
+Vendor_info    : 'HL-DT-ST'
+Identification : 'DVDRAM GSA-4040B'
+Revision       : 'A300'
+Device seems to be: Generic mmc2 DVD-R/DVD-RW.
+Using generic SCSI-3/mmc   CD-R/CD-RW driver (mmc_cdr).
+Driver flags   : MMC-3 SWABAUDIO BURNFREE
+Supported modes: TAO PACKET SAO SAO/R96P SAO/R96R RAW/R16 RAW/R96P RAW/R96R
+first: 1 last 11
+track:   1 lba:        32 (      128) 00:02:32 adr: 1 control: 0 mode: 0
+track:   2 lba:     18365 (    73460) 04:06:65 adr: 1 control: 0 mode: 0
+track:   3 lba:     38210 (   152840) 08:31:35 adr: 1 control: 0 mode: 0
+track:   4 lba:     55302 (   221208) 12:19:27 adr: 1 control: 0 mode: 0
+track:   5 lba:     71717 (   286868) 15:58:17 adr: 1 control: 0 mode: 0
+track:   6 lba:     89385 (   357540) 19:53:60 adr: 1 control: 0 mode: 0
+track:   7 lba:    104587 (   418348) 23:16:37 adr: 1 control: 0 mode: 0
+track:   8 lba:    126102 (   504408) 28:03:27 adr: 1 control: 0 mode: 0
+track:   9 lba:    145970 (   583880) 32:28:20 adr: 1 control: 0 mode: 0
+track:  10 lba:    165797 (   663188) 36:52:47 adr: 1 control: 0 mode: 0
+track:  11 lba:    182087 (   728348) 40:29:62 adr: 1 control: 0 mode: 0
+track:lout lba:    197865 (   791460) 44:00:15 adr: 1 control: 0 mode: -1
