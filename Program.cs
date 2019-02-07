@@ -2,6 +2,8 @@
 using CommandLine;
 using mor.Fingerprint;
 using mor.Hardware;
+using mor.Interfaces;
+using mor.Test;
 
 namespace mor
 {
@@ -12,14 +14,21 @@ namespace mor
             [Option('v', "verbose", Required = false, HelpText = "Set output to verbose messages.")]
             public bool Verbose { get; set; }
 
+            [Option('a', "all", Required = false, HelpText = "Output all information.")]
+            public bool All { get; set; }
+
             [Option('d', "device", Required = false, HelpText = "Set the device.", Default = "/dev/cdrom")]
             public string Device { get; set; }
+
+            [Option("test", Required = false, HelpText = "Run tests.")]
+            public bool PerformTests { get; set; }
 
             [Option("toc", Required = false, HelpText = "Dump table of contents.")]
             public bool PrintToc { get; set; }
 
             [Option("freedb-id", Required = false, HelpText = "Dump Free DB disc id.")]
             public bool PrintFreeDbDiscID { get; set; }
+
             [Option("musicbrainz-id", Required = false, HelpText = "Dump MusicBrainz disc id.")]
             public bool PrintMusicBrainzDiscID { get; set; }
         }
@@ -35,8 +44,12 @@ namespace mor
 
         static void Run(Options o)
         {
-            var toc = CdRom.ReadToc(o.Device);
-            if (o.PrintToc)
+            IDiscToc toc = null;
+            if (o.PerformTests)
+                toc = TestData.ReadToc(o.Device);
+            else
+                toc = CdRom.ReadToc(o.Device);
+            if (o.All || o.PrintToc)
             {
                 Console.WriteLine($"first: {toc.StartTrack}");
                 Console.WriteLine($"last: {toc.EndTrack}");
@@ -50,13 +63,13 @@ namespace mor
                     l.Lba, l.Adr, l.Control, l.M, l.S, l.F);
             }
 
-            if (o.PrintFreeDbDiscID)
+            if (o.All || o.PrintFreeDbDiscID)
             {
                 var freeDbDiscID = new FreeDbDiscID();
                 Console.WriteLine("FreeDB DISC ID:\r\n {0}", freeDbDiscID.GetFingerprint(toc));
             }
 
-            if (o.PrintMusicBrainzDiscID)
+            if (o.All || o.PrintMusicBrainzDiscID)
             {
                 var musicBrainzDiscID = new MusicBrainzDiscID();
                 Console.WriteLine("MusicBrainz DISC ID:\r\n {0}", musicBrainzDiscID.GetFingerprint(toc));
