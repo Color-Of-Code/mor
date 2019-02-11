@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace mor.FreeDB
@@ -18,7 +17,7 @@ namespace mor.FreeDB
 
         public string Genre { get; set; }
 
-        public List<Track> Tracks { get; }
+        public IEnumerable<Track> Tracks { get; private set; }
 
         public string ExtendedData { get; set; }
 
@@ -28,27 +27,23 @@ namespace mor.FreeDB
 
         public Entry(IEnumerable<String> data)
         {
-            Tracks = new List<Track>();
-            if (!Parse(data))
-            {
-                throw new Exception("Unable to Parse Entry.");
-            }
+            Parse(data);
         }
 
-        private bool Parse(IEnumerable<String> data)
+        private void Parse(IEnumerable<String> data)
         {
+            var tracks = new Dictionary<int, Track>();
             var r = new Regex(@"^(?<field>[A-Z]+)(?<id>[0-9]+)?=(?<value>.*)$");
-            foreach (var line in data)
-            {
-                // ignore comments
-                if (line.StartsWith('#'))
-                    continue;
+            var at = new Regex(@"^\s*(?<artist>.*?)\s+/\s+(?<title>.*)$");
 
+            // ignore comments
+            foreach (var line in data.Where(x => !x.StartsWith('#')))
+            {
                 var m = r.Match(line);
                 if (!m.Success) // couldn't find equal sign have no clue what the data is
                     continue;
                 string field = m.Groups["field"].Value;
-                string value = m.Groups["value"].Value;
+                string value = m.Groups["value"].Value.Trim();
                 switch (field)
                 {
                     case "DISCID":
@@ -56,20 +51,16 @@ namespace mor.FreeDB
                         break;
                     case "DTITLE": // artist / title
                         {
-                            Artist = value;
-                            //split the title and artist from DTITLE;
-                            // see if we have a slash
-                            int slash = Artist.IndexOf(" / ");
-                            if (slash == -1)
+                            var atm = at.Match(value);
+                            if (atm.Success)
                             {
-                                Title = Artist;
+                                Artist = atm.Groups["artist"].Value;
+                                Title = atm.Groups["title"].Value;
                             }
                             else
                             {
-                                string titleArtist = Artist;
-                                Artist = titleArtist.Substring(0, slash);
-                                slash += 3; // move past " / "
-                                Title = titleArtist.Substring(slash);
+                                Artist = value;
+                                Title = Artist;
                             }
                         }
                         break;
@@ -89,54 +80,20 @@ namespace mor.FreeDB
                     case "TTITLE":
                         {
                             int trackNumber = int.Parse(m.Groups["id"].Value);
-                            //may need to concatenate track info
-                            if (trackNumber < Tracks.Count())
-                                Tracks[trackNumber].Title += value;
-                            else
-                                Tracks.Add(new Track(trackNumber, value));
+                            tracks[trackNumber] = new Track(trackNumber+1, value);
                         }
                         break;
                     case "EXTT":
                         {
                             int trackNumber = int.Parse(m.Groups["id"].Value);
-                            if (trackNumber < 0 || trackNumber > Tracks.Count() - 1)
-                                continue;
-
-                            Tracks[trackNumber].ExtendedData += value;
+                            tracks[trackNumber].ExtendedData += value;
                         }
                         break;
                     default:
                         throw new Exception($"Unrecognized field {field}");
                 }
             }
-            return true;
-        }
-
-        public override string ToString()
-        {
-            var s = new StringBuilder();
-            s.Append("Title: ");
-            s.Append(Title);
-            s.Append("\n");
-            s.Append("Artist: ");
-            s.Append(Artist);
-            s.Append("\n");
-            s.Append("Discid: ");
-            s.Append(Discid);
-            s.Append("\n");
-            s.Append("Genre: ");
-            s.Append(Genre);
-            s.Append("\n");
-            s.Append("Year: ");
-            s.Append(Year);
-            s.Append("\n");
-            s.Append("Tracks:");
-            foreach (var track in Tracks)
-            {
-                s.Append("\n");
-                s.Append($"{track.Number} - {track.Title}");
-            }
-            return s.ToString();
+            Tracks = tracks.Values.OrderBy(x=> x.Number);
         }
     }
 }
