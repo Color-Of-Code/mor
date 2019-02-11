@@ -3,6 +3,7 @@ using CommandLine;
 using mor.Fingerprint;
 using mor.Hardware;
 using mor.Interfaces;
+using mor.Metadata;
 using mor.Test;
 
 namespace mor
@@ -66,7 +67,19 @@ namespace mor
             if (o.All || o.PrintFreeDbDiscID)
             {
                 var freeDbDiscID = new FreeDbDiscID();
-                Console.WriteLine("FreeDB DISC ID:\r\n {0}", freeDbDiscID.GetFingerprint(toc));
+                var fingerprint = freeDbDiscID.GetFingerprint(toc);
+                Console.WriteLine("FreeDB DISC ID:\r\n {0}", fingerprint);
+                var s = new FreeDBService();
+                var results = s.Query(fingerprint);
+                foreach (var r in results)
+                {
+                    Console.WriteLine($"{r.Category} {r.Discid} {r.Artist} / {r.Title}");
+                    var data = s.Read(r);
+                    foreach (var track in data.Tracks)
+                    {
+                        Console.WriteLine("T{0:00} - {1}", track.Number,  track.Title);
+                    }
+                }
             }
 
             if (o.All || o.PrintMusicBrainzDiscID)
