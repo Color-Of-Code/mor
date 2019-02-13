@@ -37,10 +37,7 @@ namespace mor
         static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args)
-                   .WithParsed<Options>(o =>
-                   {
-                       Run(o);
-                   });
+                   .WithParsed<Options>(Run);
         }
 
         static void Run(Options o)
