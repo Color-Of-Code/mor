@@ -2,8 +2,6 @@
 namespace mor.Fingerprint
 {
     using System;
-    using System.IO;
-    using System.Linq;
     using System.Security.Cryptography;
     using mor.Interfaces;
 
