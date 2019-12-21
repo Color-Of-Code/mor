@@ -1,5 +1,11 @@
 # mor
 
+## CI-Status
+
+[![Action Status](https://github.com/Color-Of-Code/mor/workflows/.NET%20Core/badge.svg)](https://github.com/Color-Of-Code/mor/actions)
+
+## Options
+
 Options:
 
 ```txt
