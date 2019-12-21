@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/mor.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.0/mor.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
